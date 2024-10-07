@@ -87,3 +87,9 @@ def test_rectangle_contains_tolerance() -> None:
     assert rectangle.contains(upper_left, tolerance=eps*2.0)
     assert rectangle.contains(lower_right, tolerance=eps*2.0)
     assert rectangle.contains(upper_right, tolerance=eps*2.0)
+
+def test_is_in_interval() -> None:
+    rectangle = Rectangle(lower_left=Point2D(1.0, 2.0), dx=2.5, dy=1.5)
+    assert rectangle.is_in_interval(1,0,2)==True
+    assert rectangle.is_in_interval(3,0,2)==False
+    
