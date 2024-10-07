@@ -20,18 +20,26 @@ class Rectangle:
     @property
     def lower_left(self) -> Point2D:
         return self._lower_left
-
+    
+    @property
+    def lower_right(self) -> Point2D:
+        return self.corner(1)
+    
+    @property
+    def upper_left(self) -> Point2D:
+        return self.corner(2)
+    
     @property
     def upper_right(self) -> Point2D:
         return self.corner(3)
 
-    # def contains(self, point: Point2D, tolerance: float = 0.0) -> bool: # Task B
-    def contains(self, point: Point2D) -> bool:
+    def contains(self, point: Point2D, tolerance: float = 0.0) -> bool: # Task B
+    # def contains(self, point: Point2D) -> bool:
         # Task A: remove duplication by defining a function
         #         that checks if a value is within an interval
         #         and reuse that here.
-        check_x = self.is_in_interval(point.x, self._lower_left.x, self._lower_left.x+self._dx)
-        check_y = self.is_in_interval(point.y, self._lower_left.y, self._lower_left.y+self._dy)
+        check_x = self.is_in_interval(point.x, self._lower_left.x - tolerance, self._lower_left.x+self._dx + tolerance)
+        check_y = self.is_in_interval(point.y, self._lower_left.y - tolerance, self._lower_left.y+self._dy + tolerance)
         if check_x and check_y:
             return True
         return False
